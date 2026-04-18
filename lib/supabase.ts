@@ -28,7 +28,7 @@ export type Squad = {
   id: number;
   platoon_id: number;
   name: string;
-  kind: "squad" | "section" | "reserve";
+  kind: "squad" | "team" | "reserve";
   sort_order: number;
 };
 
@@ -37,5 +37,23 @@ export type Webhook = {
   platoon_id: number;
   label: string;
   url: string;
+  created_at: string;
+};
+
+export type RollCall = {
+  id: string;
+  platoon_id: number;
+  title: string;
+  description: string | null;
+  op_time_unix: number;
+  created_at: string;
+};
+
+export type RSVP = {
+  id: string;
+  roll_call_id: string;
+  display_name: string;
+  squad_id: number | null;
+  attendance: "yes" | "maybe" | "no";
   created_at: string;
 };

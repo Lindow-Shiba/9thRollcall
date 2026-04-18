@@ -18,9 +18,10 @@ export async function postRollCall(
     opTimeUnix: number;
     pingRoleId?: string | null;
     squadLines?: string[];
+    rsvpUrl?: string;
   }
 ): Promise<void> {
-  const { title, description, opTimeUnix, pingRoleId, squadLines } = opts;
+  const { title, description, opTimeUnix, pingRoleId, squadLines, rsvpUrl } = opts;
 
   const lines: string[] = [];
   if (pingRoleId) lines.push(`<@&${pingRoleId}>`);
@@ -34,6 +35,10 @@ export async function postRollCall(
     lines.push("");
     lines.push("**Squads**");
     for (const l of squadLines) lines.push(l);
+  }
+  if (rsvpUrl) {
+    lines.push("");
+    lines.push(`🔗 [RSVP & select your squad](${rsvpUrl})`);
   }
 
   const payload = {
